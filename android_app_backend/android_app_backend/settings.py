@@ -46,9 +46,11 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'rest_framework_simplejwt',
+    'channels',
     
     #Created apps
     'account',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +85,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'android_app_backend.wsgi.application'
 
+ASGI_APPLICATION = 'android_app_backend.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379)],  # Redis server
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
